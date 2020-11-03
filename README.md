@@ -1,7 +1,7 @@
 # Test Api Trello
 
 ## Environment: 
-* Get your "key" and "token" from the [trello.com/app-key](https://trello.com/app-key)
+* Get your "key" and "token" from the [trello.com/app-key](https://trello.com/app-key) with scope read, write, and account
 * Configure TOKEN and KEY in the file [Environment.java](https://github.com/thiiluh/TestApiTrello/blob/main/src/test/java/trello/rest/core/Environment.java)
 
 ### Framework Contents:
