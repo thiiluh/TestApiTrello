@@ -22,20 +22,24 @@ public class CardSteps extends RestAssuredExtension {
 
 
     public static ResponseOptions<Response> response;
-    public static String boardId;
-    public static String listId;
+    public static String boardId = "";
+    public static String listId = "";
     public static String cardId;
     public static String labelId;
     public static String commentId;
 
     @Given("I have a board with List")
     public void iHaveABoardWithList() {
-        response = BoardUtilities.CreateBoard("Board_Sensedia");
-        assertThat(response.getStatusCode(), equalTo(200));
-        boardId = response.getBody().jsonPath().get("id").toString();
-        response = ListUtilities.CreateListBoard(boardId, "List_Sensedia");
-        assertThat(response.getStatusCode(), equalTo(200));
-        listId = response.getBody().jsonPath().get("id").toString();
+        if (boardId.isEmpty()) {
+            response = BoardUtilities.CreateBoard("Board_Sensedia");
+            assertThat(response.getStatusCode(), equalTo(200));
+            boardId = response.getBody().jsonPath().get("id").toString();
+        }
+        if (listId.isEmpty()) {
+            response = ListUtilities.CreateListBoard(boardId, "List_Sensedia");
+            assertThat(response.getStatusCode(), equalTo(200));
+            listId = response.getBody().jsonPath().get("id").toString();
+        }
     }
 
     @When("I make an http post call to create a card")
